@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password & PIN Saver</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+<!-- Success Notification -->
+<div id="successAlert"></div>
+
+<!-- First-Time Setup Screen -->
+<div class="login-box" id="setupBox" style="display:none;">
+    <div class="logo">🔐 <span>Password & PIN Saver</span></div>
+    <h2>Create Master Password</h2>
+    <input type="password" id="newMaster1" placeholder="Create Password">
+    <input type="password" id="newMaster2" placeholder="Confirm Password">
+    <button onclick="saveMaster()">Save</button>
+</div>
+
+<!-- Login Screen -->
+<div class="login-box" id="loginBox" style="display:none;">
+    <div class="logo">🔐 <span>Password & PIN Saver</span></div>
+    <h2>Enter Master Password</h2>
+    <input type="password" id="masterInput" placeholder="Master Password">
+    <button onclick="checkMaster()">Unlock</button>
+</div>
+
+<!-- Main App Container -->
+<div class="container" id="mainApp" style="display:none;">
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1>Password & PIN Saver</h1>
+        <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+        <button onclick="resetApp()" class="reset-btn">Reset</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" id="passwordTabBtn" onclick="showTab('password')">Passwords</button>
+        <button class="tab-btn" id="pinTabBtn" onclick="showTab('pin')">PINs</button>
+    </div>
+
+    <!-- Password Tab -->
+    <div id="passwordTab" class="tab-content">
+        <div class="input-box">
+            <input type="text" id="siteName" placeholder="Website / App Name">
+            <input type="text" id="userName" placeholder="Username / Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="savePassword()">Save Password</button>
+        </div>
+        <input type="text" id="searchPassword" placeholder="Search Passwords..." onkeyup="displayPasswords()">
+        <h2>Saved Passwords</h2>
+        <div id="passwordList"></div>
+    </div>
+
+    <!-- PIN Tab -->
+    <div id="pinTab" class="tab-content" style="display:none;">
+        <div class="input-box">
+            <input type="text" id="pinCategory" placeholder="PIN Category (ATM, Door Lock...)">
+            <input type="password" id="pinValue" placeholder="Enter PIN">
+            <label><input type="checkbox" id="pinSession"> Save in session only</label>
+            <button onclick="savePin()">Save PIN</button>
+        </div>
+        <input type="text" id="searchPin" placeholder="Search PINs..." onkeyup="displayPins()">
+        <h2>Saved PINs</h2>
+        <div id="pinList"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
