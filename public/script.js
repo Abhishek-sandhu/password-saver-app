@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://YOUR-BACKEND-NAME.onrender.com/api'; // 🔥 CHANGED: Replaced localhost with Render backend URL
 let token = localStorage.getItem('token');
 
 // Page load check
