@@ -24,8 +24,10 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: "*",  // 🔥 ADDED: Allow all origins for Render deployment
-  methods: ["GET", "POST", "PUT", "DELETE"],  // 🔥 ADDED: Specify allowed methods
+  origin: ["https://password-saver-app.onrender.com", "http://localhost:5000"], // 🔥 Allow frontend origin and localhost for development
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 app.use(express.json());
 app.use(express.static('public')); // Serve static files
